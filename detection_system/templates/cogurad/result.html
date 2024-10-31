@@ -101,7 +101,7 @@
               </a>
               
               <h3 style="padding-top: 30px;">Prediction: {{ predicted_class }}</h3> <!-- Always display prediction -->
-              <img src="{{ file_url }}" alt="Uploaded Image" id="uploadedImage">
+              <img src="{% static 'images/detected_images/' %}/{{ file_url }}"  alt="Uploaded Image" id="uploadedImage">
               
               {% if predicted_class == 'Diseased' %}
               <div class="remediation-text">
