@@ -1,0 +1,56 @@
+<div id="sidebar" class="sidebar">
+     <div class="sidebar-wrapper">
+         <div class="logo">
+             <a href="{% url 'home' %}" class="simple-text logo-mini"> </a>
+             <a href="{% url 'home' %}" class="simple-text logo-normal">CocoaGuard</a>
+         </div>
+         <ul class="nav">
+             <li class="{% if request.path == '/'|add:'dashboard/' %}active{% endif %}">
+                 <a href="{% url 'dashboard' %}">
+                     <i class="tim-icons icon-chart-pie-36"></i>
+                     <p>Dashboard Overview</p>
+                 </a>
+             </li>
+             <li class="{% if request.path == '/'|add:'upload/' %}active{% endif %}">
+                 <a href="{% url 'upload' %}">
+                     <i class="tim-icons icon-cloud-upload-94"></i>
+                     <p>Upload Image</p>
+                 </a>
+             </li>
+             <li class="{% if request.path == '/'|add:'camera/' %}active{% endif %}">
+                 <a href="{% url 'camera' %}">
+                     <i class="tim-icons icon-camera-18"></i>
+                     <p>Camera Capture</p>
+                 </a>
+             </li>
+             <li class="{% if request.path == '/'|add:'profile/' %}active{% endif %}">
+                 <a href="{% url 'profile' request.user.id %}">
+                     <i class="tim-icons icon-single-02"></i>
+                     <p>User Profile</p>
+                 </a>
+             </li>
+             <li class="{% if request.path == '/'|add:'analytics/' %}active{% endif %}">
+                 <a href="{% url 'analytics' %}">
+                     <i class="tim-icons icon-chart-bar-32"></i>
+                     <p>Analytics/Reports</p>
+                 </a>
+             </li>
+             <li class="{% if request.path == '/'|add:'support/' %}active{% endif %}">
+                 <a href="{% url 'support' %}">
+                     <i class="tim-icons icon-world"></i>
+                     <p>Support</p>
+                 </a>
+             </li>
+             <li class="active-pro">
+                 <a href="{% url 'logout' %}">
+                     <i class="tim-icons icon-lock-circle"></i>
+                     <p>Log out</p>
+                 </a>
+             </li>
+         </ul>
+     </div>
+ </div>
+ 
+
+
+ 

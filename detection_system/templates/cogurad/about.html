@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+	<title>About - Cogurad Web App</title>
+	<meta content="" name="description" />
+	<meta content="" name="keywords" />
+
+	<!-- Favicons -->
+	<link href="{% static 'images/favicon.png' %}" rel="icon" />
+	<link href="{% static 'images/apple-touch-icon.png' %}" rel="apple-touch-icon" />
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet" />
+
+	<!-- Vendor CSS Files -->
+	<link href="{% static 'styles/animate.css/animate.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'styles/aos/aos.css' %}" rel="stylesheet" />
+	<link href="{% static 'styles/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'styles/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+	<link href="{% static 'styles/boxicons/css/boxicons.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'styles/glightbox/css/glightbox.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'styles/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
+
+	<!-- Template Main CSS File -->
+	<link href="{% static 'styles/style2.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+	<!-- ======= Header ======= -->
+	<header id="header" class="fixed-top d-flex align-items-center">
+		<div class="container d-flex justify-content-between align-items-center">
+			<div class="logo">
+				<h1 class="text-light">
+					<a  href="{% url 'home' %}"><span>Cogurad</span></a>
+				</h1>
+			</div>
+			{% include 'cogurad/lpnavbar.html' %}
+		</div>
+	</header>
+	<!-- End Header -->
+
+	<main id="main">
+		<!-- ======= About Us Section ======= -->
+		<section class="breadcrumbs">
+			<div class="container">
+				<div class="d-flex justify-content-between align-items-center">
+					<h2>About Us</h2>
+					<ol>
+						<li><a  href="{% url 'home' %}">Home</a></li>
+						<li>About Us</li>
+					</ol>
+				</div>
+			</div>
+		</section>
+		<!-- End About Us Section -->
+
+		<!-- ======= About Section ======= -->
+		<section class="about" data-aos="fade-up">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<img src="{% static 'images/golden-bitcoin-mail-hands.jpg' %}"class="img-fluid" alt="Security Focused" />
+					</div>
+					<div class="col-lg-6 pt-4 pt-lg-0">
+						<h3>Welcome to Cogurad</h3>
+						<p class="fst-italic">
+							At Cogurad, we are committed to empowering organizations to secure their digital presence through our innovative cybersecurity solutions. With our user-friendly web application, we help businesses identify, assess, and mitigate cybersecurity threats effectively.
+						</p>
+						<ul>
+							<li><i class="bi bi-check2-circle"></i> Comprehensive Risk Management</li>
+							<li><i class="bi bi-check2-circle"></i> Advanced Threat Detection</li>
+							<li><i class="bi bi-check2-circle"></i> Real-Time Monitoring & Alerts</li>
+						</ul>
+						<p>
+							Our platform is designed to provide peace of mind, with constant improvements to meet the evolving cybersecurity landscape. Thank you for trusting Cogurad as your digital security partner.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End About Section -->
+
+		<!-- ======= Facts Section ======= -->
+		<section class="facts section-bg" data-aos="fade-up">
+			<div class="container">
+				<div class="row counters">
+					<div class="col-lg-3 col-6 text-center">
+						<span data-purecounter-start="0" data-purecounter-end="350" data-purecounter-duration="1" class="purecounter"></span>
+						<p>Organizations Secured</p>
+					</div>
+					<div class="col-lg-3 col-6 text-center">
+						<span data-purecounter-start="0" data-purecounter-end="850" data-purecounter-duration="1" class="purecounter"></span>
+						<p>Threats Detected</p>
+					</div>
+					<div class="col-lg-3 col-6 text-center">
+						<span data-purecounter-start="0" data-purecounter-end="2500" data-purecounter-duration="1" class="purecounter"></span>
+						<p>Vulnerabilities Fixed</p>
+					</div>
+					<div class="col-lg-3 col-6 text-center">
+						<span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span>
+						<p>Years of Expertise</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Facts Section -->
+
+		<!-- ======= Our Services Section ======= -->
+		<section class="skills" data-aos="fade-up">
+			<div class="container">
+				<div class="section-title">
+					<h2>Our Services</h2>
+					<p>
+						We offer a comprehensive range of cybersecurity services, designed to protect your business from evolving cyber threats. Our solutions include:
+					</p>
+				</div>
+				<div class="skills-content">
+					<div class="progress">
+						<div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+							<span class="skill">Threat Detection & Response <i class="val">100%</i></span>
+						</div>
+					</div>
+
+					<div class="progress">
+						<div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+							<span class="skill">Vulnerability Assessments <i class="val">90%</i></span>
+						</div>
+					</div>
+
+					<div class="progress">
+						<div class="progress-bar bg-warning" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+							<span class="skill">Compliance Monitoring <i class="val">85%</i></span>
+						</div>
+					</div>
+
+					<div class="progress">
+						<div class="progress-bar bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+							<span class="skill">Incident Response <i class="val">75%</i></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Our Services Section -->
+
+		<!-- ======= Testimonials Section ======= -->
+		<section class="testimonials" data-aos="fade-up">
+			<div class="container">
+				<div class="section-title">
+					<h2>Client Testimonials</h2>
+					<p>See what our satisfied clients have to say about Cogurad’s services.</p>
+				</div>
+
+				<div class="testimonials-carousel swiper">
+					<div class="swiper-wrapper">
+						<div class="testimonial-item swiper-slide">
+							<img src="{% static 'images/golden-bitcoin-mail-hands.jpg' %}" class="testimonial-img" alt="" />
+							<h3>James Foster</h3>
+							<h4>CTO, SecureTech</h4>
+							<p>
+								<i class="bx bxs-quote-alt-left quote-icon-left"></i>
+								Cogurad has been instrumental in safeguarding our infrastructure. Their real-time threat detection is highly effective, and their support team is always ready to assist. I highly recommend their services.
+								<i class="bx bxs-quote-alt-right quote-icon-right"></i>
+							</p>
+						</div>
+
+						<div class="testimonial-item swiper-slide">
+							<img src="{% static 'images/golden-bitcoin-mail-hands.jpg' %}" class="testimonial-img" alt="" />
+							<h3>Linda Howard</h3>
+							<h4>CEO, DataSafe</h4>
+							<p>
+								<i class="bx bxs-quote-alt-left quote-icon-left"></i>
+								We've partnered with Cogurad for over two years, and they continue to impress us with their proactive security measures and excellent service. Our company’s cybersecurity has never been stronger.
+								<i class="bx bxs-quote-alt-right quote-icon-right"></i>
+							</p>
+						</div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</section>
+		<!-- End Testimonials Section -->
+
+	</main>
+	<!-- End #main -->
+	{% include 'cogurad/footer.html' %}
+			<!-- End Footer -->
+
+			<a
+			href="#"
+			class="back-to-top d-flex align-items-center justify-content-center"
+			><i class="bi bi-arrow-up-short"></i
+		></a>
+
+		<!-- Vendor JS Files -->
+		<!-- Vendor JS Files -->
+		<script src="{% static 'js/purecounter_vanilla.js' %}"></script>
+		<script src="{% static 'js/aos.js' %}"></script>
+		<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+		<script src="{% static 'js/glightbox.min.js' %}"></script>
+		<script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+		<script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+		<script src="{% static 'js/noframework.waypoints.js' %}"></script>
+		<script src="{% static 'js/validate.js' %}"></script>
+
+		<!-- Template Main JS File -->
+		<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

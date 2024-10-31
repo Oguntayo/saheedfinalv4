@@ -1,0 +1,453 @@
+<!--
+=========================================================
+* Black Dashboard - v1.0.1
+=========================================================
+* Product Page: https://www.creative-tim.com/product/black-dashboard
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+* Coded by Creative Tim
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/apple-icon.png' %}" />
+  <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}" />
+  <title>
+    Cogurad Dashboard
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- Nucleo Icons -->
+  <link href="{% static 'styles/css/nucleo-icons.css' %}" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="{% static 'styles/css/black-dashboard.css' %}" rel="stylesheet" />
+  <link href="{% static 'demo/demo.css' %}" rel="stylesheet" />
+  <style>    .button-container {
+    display: flex;
+    justify-content: center; /* Horizontally centers the button */
+    align-items: center; /* Vertically centers the button (if needed) */
+    padding-top: 1%;
+  }
+
+  .chat-container {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    max-width: 400px;
+    margin: auto;
+    padding: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Initially hidden */
+    flex-direction: column;
+  }
+
+  .chat-box {
+    height: 400px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .message {
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 70%;
+    position: relative;
+    cursor: pointer; /* Makes the message clickable */
+  }
+
+  .bot-message {
+    background-color: #f1f1f1;
+    align-self: flex-start; /* Align bot messages to the left */
+  }
+
+  .user-message {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end; /* Align user messages to the right */
+  }
+
+  .option-message {
+    background-color: #e0e0e0; /* Light grey for options */
+    color: #007bff;
+    font-weight: bold;
+    align-self: flex-start;
+  }
+
+  .cancel-button {
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+    align-self: flex-end;
+  }
+  </style>
+</head>
+
+<body class="">
+  <div class="wrapper">
+    {% include 'cogurad/sidebar.html' %}
+    <div class="main-panel">
+      <!-- Navbar -->
+      {% include 'cogurad/dashboard-header.html' %}
+      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-chart">
+              <div class="card-header ">
+                <div class="row">
+                  <div class="col-sm-6 text-left">
+                    <h2 class="card-title">Support</h2>
+                    <p class="support-text">Have a question? Need help with the dashboard? We're here to assist you.</p>
+                  </div>
+                  <div class="col-sm-6"></div>
+                </div>
+              </div>
+              <div class="card-body">
+                <form method="POST" class="support-form" action="{% url 'home' %}">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Describe your issue or question" required></textarea>
+                  </div>
+                  <div class="submit-btn">
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="card mt-4">
+              <div class="card-header ">
+                <h4 class="card-title">FAQ</h4>
+              </div>
+              <div class="card-body">
+                <p><strong>Q: What is Cogurad?</strong></p>
+                <p>A: Cogurad is a comprehensive dashboard designed to assist users in managing their accounts effectively.</p>
+                <p><strong>Q: How can I reset my password?</strong></p>
+                <p>A: You can reset your password by clicking on the "Forgot Password?" link on the login page.</p>
+              </div>
+            </div>
+
+            <!-- Troubleshoot Section -->
+            <div class="card mt-4">
+              <div class="card-header ">
+                <h4 class="card-title">Troubleshoot</h4>
+              </div>
+              <div class="card-body">
+                <p>If you're facing issues with the dashboard, here are some common solutions:</p>
+                <ul>
+                  <li>Clear your browser cache and cookies.</li>
+                  <li>Ensure that your browser is up to date.</li>
+                  <li>If the problem persists, please contact support.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Live Chat Section -->
+            <div class="card mt-4">
+              <div class="card-header ">
+                <h4 class="card-title">Live Chat</h4>
+              </div>
+              <div class="chat-container">
+                <div class="cancel-button" onclick="cancelChat()">X</div>
+                <div class="chat-box" id="chatBox"></div>
+              </div>
+              <div class="card-body">
+                <p>Need immediate assistance? Click the button below to start a live chat with our support team:</p>
+                <button class="btn btn-success" id="liveChatButton" onclick="startLiveChat()">Start Live Chat</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% include 'cogurad/dashboard_footer.html' %}
+    </div>
+  </div>
+
+ 
+  {% include 'cogurad/fixed_plugin.html' %}
+
+  <!--   Core JS Files   -->
+  <script src="{% static 'js/core/jquery.min.js' %}"></script>
+  <script src="{% static 'js/core/popper.min.js' %}"></script>
+  <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/plugins/perfect-scrollbar.jquery.min.js' %}"></script>
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chart JS -->
+  <script src="{% static 'js/plugins/chartjs.min.js' %}"></script>
+  <!--  Notifications Plugin    -->
+  <script src="{% static 'js/plugins/bootstrap-notify.js' %}"></script>
+  <!-- Control Center for Black Dashboard -->
+  <script src="{% static 'js/black-dashboard.min.js' %}"></script>
+  <script>
+    // Function to start live chat
+ // Function to start live chat
+function startLiveChat() {
+  const chatContainer = document.querySelector('.chat-container');
+  chatContainer.style.display = 'flex'; // Show the chat container
+   liveChatButton.style.display = 'none'; // Hide the button when chat is active
+  startChat(); // Initialize the chat
+}
+
+  </script>
+
+<script>
+  const chatBox = document.getElementById('chatBox');
+    const liveChatButton = document.getElementById('liveChatButton');
+    let isChatActive = false;
+
+
+
+    function cancelChat() {
+      isChatActive = false;
+      chatBox.innerHTML = ''; // Clear the chat messages
+      document.querySelector('.chat-container').style.display = 'none'; // Hide chat container
+      liveChatButton.style.display = 'block'; // Show the button again
+    }
+  // Initial message from the bot
+  function startChat() {
+      addBotMessage("🤖 Welcome to CocoaGuard! How can I assist you today?");
+      addOption("Learn about CocoaGuard", option1);
+      addOption("How to use the service", option2);
+      addOption("FAQs", option3);
+      addOption("Contact support", option4);
+  }
+
+  function addBotMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.textContent = message;
+      messageDiv.className = 'message bot-message';
+      chatBox.appendChild(messageDiv);
+      chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+  }
+
+  function addUserMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.textContent = message;
+      messageDiv.className = 'message user-message';
+      chatBox.appendChild(messageDiv);
+      chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+  }
+
+  function addOption(text, callback) {
+      const optionDiv = document.createElement('div');
+      optionDiv.className = 'message option-message';
+      optionDiv.textContent = text;
+      optionDiv.onclick = () => {
+          addUserMessage(text); // Show user message
+          removeAllOptions(); // Remove all options from chat
+          callback(); // Call the corresponding function
+      };
+      chatBox.appendChild(optionDiv);
+      chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+  }
+
+  function removeAllOptions() {
+      const options = document.querySelectorAll('.option-message');
+      options.forEach(option => option.remove()); // Remove all options
+  }
+
+  // Option 1: Learn about CocoaGuard
+  function option1() {
+      addBotMessage("🤖 CocoaGuard uses advanced AI technology to detect cocoa diseases quickly and accurately. Would you like to know how to get started?");
+      addOption("Yes, how to get started?", option2);
+      addOption("No, tell me more about the features", option3);
+  }
+
+  // Option 2: How to use the service
+  function option2() {
+      addBotMessage("🤖 Great! To get started:");
+      addBotMessage("1. Upload a photo of your cocoa pod.");
+      addBotMessage("2. Our AI will analyze the image.");
+      addBotMessage("3. You'll receive a detailed report.");
+      addBotMessage("4. If disease is detected, we'll guide you on treatment options.");
+      addBotMessage("5. You can view your history anytime!");
+      addOption("Got it! What's next?", option4);
+      addOption("I have more questions.", option3);
+  }
+
+  // Option 3: FAQs
+  function option3() {
+      addBotMessage("🤖 Here are some frequently asked questions:");
+      addBotMessage("1. How accurate is CocoaGuard?");
+      addBotMessage("2. What types of diseases can it detect?");
+      addBotMessage("3. Is there a cost to use the service?");
+      addOption("Tell me about the accuracy", () => addBotMessage("🤖 CocoaGuard has a high accuracy rate based on advanced machine learning models."));
+      addOption("What diseases can it detect?", () => addBotMessage("🤖 It can detect various cocoa diseases, including Black Pod Disease."));
+      addOption("What about costs?", () => addBotMessage("🤖 Using CocoaGuard is currently free during the trial period!"));
+  }
+
+  // Option 4: Contact support
+  function option4() {
+      addBotMessage("🤖 If you need support, please contact us at support@cocoaguard.com or visit our website.");
+      addOption("Back to main menu", startChat);
+  }
+
+</script>
+
+    <script>
+      $(document).ready(function() {
+        $().ready(function() {
+          $sidebar = $('.sidebar');
+          $navbar = $('.navbar');
+          $main_panel = $('.main-panel');
+  
+          $full_page = $('.full-page');
+  
+          $sidebar_responsive = $('body > .navbar-collapse');
+          sidebar_mini_active = true;
+          white_color = false;
+  
+          window_width = $(window).width();
+  
+          fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+  
+  
+  
+          $('.fixed-plugin a').click(function(event) {
+            if ($(this).hasClass('switch-trigger')) {
+              if (event.stopPropagation) {
+                event.stopPropagation();
+              } else if (window.event) {
+                window.event.cancelBubble = true;
+              }
+            }
+          });
+  
+          $('.fixed-plugin .background-color span').click(function() {
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+  
+            var new_color = $(this).data('color');
+  
+            if ($sidebar.length != 0) {
+              $sidebar.attr('data', new_color);
+            }
+  
+            if ($main_panel.length != 0) {
+              $main_panel.attr('data', new_color);
+            }
+  
+            if ($full_page.length != 0) {
+              $full_page.attr('filter-color', new_color);
+            }
+  
+            if ($sidebar_responsive.length != 0) {
+              $sidebar_responsive.attr('data', new_color);
+            }
+          });
+  
+          $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
+            var $btn = $(this);
+  
+            if (sidebar_mini_active == true) {
+              $('body').removeClass('sidebar-mini');
+              sidebar_mini_active = false;
+              blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+            } else {
+              $('body').addClass('sidebar-mini');
+              sidebar_mini_active = true;
+              blackDashboard.showSidebarMessage('Sidebar mini activated...');
+            }
+  
+            // we simulate the window Resize so the charts will get updated in realtime.
+            var simulateWindowResize = setInterval(function() {
+              window.dispatchEvent(new Event('resize'));
+            }, 180);
+  
+            // we stop the simulation of Window Resize after the animations are completed
+            setTimeout(function() {
+              clearInterval(simulateWindowResize);
+            }, 1000);
+          });
+  
+          $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
+            var $btn = $(this);
+  
+            if (white_color == true) {
+  
+              $('body').addClass('change-background');
+              setTimeout(function() {
+                $('body').removeClass('change-background');
+                $('body').removeClass('white-content');
+              }, 900);
+              white_color = false;
+            } else {
+  
+              $('body').addClass('change-background');
+              setTimeout(function() {
+                $('body').removeClass('change-background');
+                $('body').addClass('white-content');
+              }, 900);
+  
+              white_color = true;
+            }
+  
+  
+          });
+  
+          $('.light-badge').click(function() {
+            $('body').addClass('white-content');
+          });
+  
+          $('.dark-badge').click(function() {
+            $('body').removeClass('white-content');
+          });
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function() {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+  
+      });
+    </script>
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+    <script>
+      window.TrackJS &&
+        TrackJS.install({
+          token: "ee6fab19c5a04ac1a32a645abde4613a",
+          application: "black-dashboard-free"
+        });
+    </script>
+</body>
+
+</html>
+
+    

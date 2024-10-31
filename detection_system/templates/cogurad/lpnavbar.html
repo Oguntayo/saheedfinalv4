@@ -1,0 +1,16 @@
+<nav id="navbar" class="navbar">
+    <ul style="background-color: transparent; padding: 0; margin: 0; list-style-type: none;">
+        <li><a class="active" href="{% url 'home' %}" style="color: white;">Home</a></li>
+        <li><a href="{% url 'about' %}" style="color: white;">About</a></li>
+        {% if request.user.is_authenticated %}
+            <li><a href="{% url 'logout' %}" style="color: white;">Logout</a></li>
+            <li><a href="{% url 'dashboard' %}" style="color: white;">Dashboard</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}" style="color: white;">Login</a></li>
+            <li><a href="{% url 'register' %}" style="color: white;">Register</a></li>
+        {% endif %}
+        <li><a href="#contact" style="color: white;">Contact Us</a></li>
+    </ul>
+    <i class="bi bi-list mobile-nav-toggle"></i>
+</nav>
+

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/apple-icon.png' %}" />
+  <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}" />
+  <title>
+    Cogurad Dashboard
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- Nucleo Icons -->
+  <link href="{% static 'styles/css/nucleo-icons.css' %}" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="{% static 'styles/css/black-dashboard.css' %}" rel="stylesheet" />
+  <link href="{% static 'demo/demo.css' %}" rel="stylesheet" />
+  <style>
+  /* Initially hide the image preview */
+  #imagePreview {
+      display: none;
+      width: 100%; /* Adjust as necessary */
+      height: auto; /* Maintain aspect ratio */
+      margin-bottom: 20px;
+  }
+  
+  /* Style the upload icon */
+  .upload-icon {
+      font-size: 300px; /* Set the size of the icon */
+      color:#47748a; /* Set the icon color */
+      margin-top: 20px; /* Add margin above the icon */
+      transition: transform 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+      margin-bottom: 20%;
+  }
+
+  .upload-icon:hover {
+      transform: scale(1.1); /* Scale up on hover */
+      color: #2980b9; /* Darken the color on hover */
+  }
+
+  input[type="file"] {
+      font-size: 18px; /* Adjust font size */
+      padding: 10px; /* Padding for file input */
+      display: block; /* Block display for full width */
+      width: 100%; /* Full width */
+      margin-top: 0; /* Margin on top */
+  }
+
+  .button-container {
+      display: flex;
+      justify-content: center; /* Horizontally centers the button */
+      align-items: center; /* Vertically centers the button (if needed) */
+      padding-top: 1%;
+  }
+   </style>
+</head>
+
+<body class="">
+  <div class="wrapper">
+
+    {% include 'cogurad/sidebar.html' %}
+    <div class="main-panel">
+      <!-- Navbar -->
+     
+      {% include 'cogurad/dashboard-header.html' %}
+      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-chart">
+              <div class="card-header ">
+                <div class="row">
+                  <div class="col-sm-6 text-left">
+                    <h2 class="card-title">Select Image from Device</h2>
+                  </div>
+                  <div class="col-sm-6">
+                 
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <form method="POST" enctype="multipart/form-data" action="{% url 'predict' %}">
+                  {% csrf_token %}
+                  <div class="form-group text-center">
+                      <div>
+                          <img id="imagePreview" class="image-preview" src="" alt="Image Preview" /> <!-- Image preview -->
+                          <i class="fas fa-cloud-upload-alt upload-icon" id="uploadIcon"></i> <!-- Updated icon class -->
+                      </div>
+                      <input type="file" class="form-control mt-3" id="imageUpload" name="image" accept="image/*" />
+                  </div>      
+                  <div class="button-container">
+                    <button type="submit" class="btn btn-primary mt-3">Submit Image</button>
+                  </div>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>       
+
+        <!-- Prediction Results -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Prediction History</h4>
+              </div>
+              <div class="card-body" style="max-height: 300px; overflow-y: auto;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Image</th>
+                            <th>Disease</th>
+                            <th>Remediation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if detections %}
+                            {% for detection in detections %}
+                            <tr>
+                                <td>{{ detection.date|date:"m/d/Y" }}</td>
+                                <td><img src="{{ detection.image.url }}" alt="Leaf" width="50"></td>
+                                <td>{{ detection.disease }}</td>
+                                <td>{{ detection.remediation }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="4" style="text-align: center;">No detection yet</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics Section -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Analytics</h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <h4>Traffic Overview</h4>
+                    <canvas id="trafficChart" height="300"></canvas>
+                  </div>
+                  <div class="col-lg-6">
+                    <h4>User Engagement</h4>
+                    <canvas id="engagementChart" height="300"></canvas>
+                  </div>
+                </div>
+            
+
+                <!-- Overall Statistics Section -->
+                <div class="mt-4">
+                  <h3>Analytics</h3>
+                  <p>Total Images Uploaded: {{ total_images_uploaded }}</p>
+                  <p>Total Disease Predictions: {{ total_disease_predictions }}</p>
+                  <p>Prediction Accuracy: {{ prediction_accuracy|floatformat:2 }}%</p>
+              </div>
+                <div class="card mt-4">
+                  <h3 class="text-center">Disease Detection Statistics</h3>
+                  <div class="chart" id="disease-chart"></div> <!-- Chart for disease statistics -->
+                </div>
+
+                <div class="mt-4">
+                  <h3 class="text-center">User Engagement</h3>
+                  <p>Active Users: {{ active_users }}</p>
+                  <p>Average Session Duration: {{ average_duration }} minutes</p>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      {% include 'cogurad/dashboard_footer.html' %}
+    </div>
+  </div>
+
+  {% include 'cogurad/fixed_plugin.html' %}
+  <script>
+   // JavaScript to handle image upload and preview
+document.getElementById('imageUpload').addEventListener('change', function(event) {
+    const file = event.target.files[0]; // Get the selected file
+    const reader = new FileReader(); // Create a FileReader object
+
+    reader.onload = function(e) {
+        const imagePreview = document.getElementById('imagePreview');
+        imagePreview.src = e.target.result; // Set the image source to the selected file
+        imagePreview.style.display = 'block'; // Show the image preview
+        document.getElementById('uploadIcon').style.display = 'none'; // Hide the upload icon
+    };
+
+    if (file) {
+        reader.readAsDataURL(file); // Read the file as a data URL
+    }
+});
+
+// Prevent form submission if no image is selected
+document.querySelector('form').addEventListener('submit', function(event) {
+    const fileInput = document.getElementById('imageUpload');
+    if (!fileInput.files.length) { // Check if no file is selected
+        alert('Please select an image before submitting.'); // Show an alert
+        event.preventDefault(); // Prevent form submission
+    }
+});
+
+// Chart JS Example
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Total Images', 'Diseases Detected', 'Healthy', 'Errors'],
+        datasets: [{
+            label: 'Number of Images',
+            data: [50, 30, 15, 5],
+            backgroundColor: ['#3498db', '#e74c3c', '#2ecc71', '#f1c40f'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+  <!--   Core JS Files   -->
+  <script src="{% static 'js/core/jquery.min.js' %}"></script>
+  <script src="{% static 'js/core/popper.min.js' %}"></script>
+  <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/plugins/perfect-scrollbar.jquery.min.js' %}"></script>
+  <!-- Place this tag in your head or just before your close body tag. -->
+<!--  Google Maps Plugin    -->
+<!-- Place this tag in your head or just before your close body tag. -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Chart JS -->
+<script src="{% static 'js/plugins/chartjs.min.js' %}"></script>
+<!--  Notifications Plugin    -->
+  <script src="{% static 'js/plugins/bootstrap-notify.js' %}"></script>
+<!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="{% static 'js/black-dashboard.min.js' %}"></script>
+<script src="{% static 'demo/demo.js' %}"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Sample data for traffic chart
+      var ctx = document.getElementById('trafficChart').getContext('2d');
+      var trafficChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          datasets: [{
+            label: 'Traffic',
+            data: [120, 190, 150, 200, 170, 220],
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+      // Sample data for engagement chart
+      var ctxEngagement = document.getElementById('engagementChart').getContext('2d');
+      var engagementChart = new Chart(ctxEngagement, {
+        type: 'bar',
+        data: {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          datasets: [{
+            label: 'Engagement',
+            data: [30, 50, 70, 40, 60, 80],
+            backgroundColor: 'rgba(153, 102, 255, 0.5)',
+            borderColor: 'rgba(153, 102, 255, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    });
+  </script>
+
+ <script>
+  $(document).ready(function() {
+    $().ready(function() {
+      $sidebar = $('.sidebar');
+      $navbar = $('.navbar');
+      $main_panel = $('.main-panel');
+
+      $full_page = $('.full-page');
+
+      $sidebar_responsive = $('body > .navbar-collapse');
+      sidebar_mini_active = true;
+      white_color = false;
+
+      window_width = $(window).width();
+
+      fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+
+
+      $('.fixed-plugin a').click(function(event) {
+        if ($(this).hasClass('switch-trigger')) {
+          if (event.stopPropagation) {
+            event.stopPropagation();
+          } else if (window.event) {
+            window.event.cancelBubble = true;
+          }
+        }
+      });
+
+      $('.fixed-plugin .background-color span').click(function() {
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+
+        var new_color = $(this).data('color');
+
+        if ($sidebar.length != 0) {
+          $sidebar.attr('data', new_color);
+        }
+
+        if ($main_panel.length != 0) {
+          $main_panel.attr('data', new_color);
+        }
+
+        if ($full_page.length != 0) {
+          $full_page.attr('filter-color', new_color);
+        }
+
+        if ($sidebar_responsive.length != 0) {
+          $sidebar_responsive.attr('data', new_color);
+        }
+      });
+
+      $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
+        var $btn = $(this);
+
+        if (sidebar_mini_active == true) {
+          $('body').removeClass('sidebar-mini');
+          sidebar_mini_active = false;
+          blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+        } else {
+          $('body').addClass('sidebar-mini');
+          sidebar_mini_active = true;
+          blackDashboard.showSidebarMessage('Sidebar mini activated...');
+        }
+
+        // we simulate the window Resize so the charts will get updated in realtime.
+        var simulateWindowResize = setInterval(function() {
+          window.dispatchEvent(new Event('resize'));
+        }, 180);
+
+        // we stop the simulation of Window Resize after the animations are completed
+        setTimeout(function() {
+          clearInterval(simulateWindowResize);
+        }, 1000);
+      });
+
+      $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
+        var $btn = $(this);
+
+        if (white_color == true) {
+
+          $('body').addClass('change-background');
+          setTimeout(function() {
+            $('body').removeClass('change-background');
+            $('body').removeClass('white-content');
+          }, 900);
+          white_color = false;
+        } else {
+
+          $('body').addClass('change-background');
+          setTimeout(function() {
+            $('body').removeClass('change-background');
+            $('body').addClass('white-content');
+          }, 900);
+
+          white_color = true;
+        }
+
+
+      });
+
+      $('.light-badge').click(function() {
+        $('body').addClass('white-content');
+      });
+
+      $('.dark-badge').click(function() {
+        $('body').removeClass('white-content');
+      });
+    });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    // Javascript method's body can be found in assets/js/demos.js
+    demo.initDashboardPageCharts();
+
+  });
+</script>
+<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS &&
+    TrackJS.install({
+      token: "ee6fab19c5a04ac1a32a645abde4613a",
+      application: "black-dashboard-free"
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+		<title>Cogurad</title>
+		<meta content="" name="description" />
+		<meta content="" name="keywords" />
+		<meta name="theme-color" content="#457087">
+		<!-- Favicons -->
+		<link href="{% static 'images/favicon.png' %}" rel="icon" />
+		<link
+			href="{% static 'images/apple-touch-icon.png' %}"
+			rel="apple-touch-icon" />
+
+		<!-- Google Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
+			rel="stylesheet" />
+
+		<!-- Vendor CSS Files -->
+		<link
+			href="{% static 'styles/animate.css/animate.min.css' %}"
+			rel="stylesheet" />
+		<link href="{% static 'styles/aos/aos.css' %}" rel="stylesheet" />
+		<link
+			href="{% static 'styles/bootstrap/css/bootstrap.min.css' %}"
+			rel="stylesheet" />
+		<link
+			href="{% static 'styles/bootstrap-icons/bootstrap-icons.css' %}"
+			rel="stylesheet" />
+		<link
+			href="{% static 'styles/boxicons/css/boxicons.min.css' %}"
+			rel="stylesheet" />
+		<link
+			href="{% static 'styles/glightbox/css/glightbox.min.css' %}"
+			rel="stylesheet" />
+		<link
+			href="{% static 'styles/swiper/swiper-bundle.min.css' %}"
+			rel="stylesheet" />
+		<link href="{% static 'styles/style2.css' %}" rel="stylesheet" />
+	</head>
+
+	<body>
+		<!-- ======= Header ======= -->
+		 
+		<header
+			id="header"
+			class="fixed-top d-flex align-items-center header-transparent">
+			<div class="container d-flex justify-content-between align-items-center">
+				<div class="logo">
+					<h1 class="text-light">
+						<a  href="{% url 'home' %}"><span>Welcome To Cogurad</span></a>
+					</h1>
+					
+				</div>
+
+				{% include 'cogurad/lpnavbar.html' %}
+
+				<!-- .navbar -->
+			</div>
+		</header>
+		<!-- End Header -->
+
+		<!-- ======= Hero No Slider Section ======= -->
+	
+		<section
+			id="hero-no-slider"
+			class="d-flex justify-cntent-center align-items-center">
+			<div
+				class="container position-relative"
+				data-aos="fade-up"
+				data-aos-delay="100">
+				<div class="row justify-content-center">
+					<div class="col-xl-8">
+						<h2>Welcome to CocoaGuard</h2>
+						<p>
+							Maximize your cocoa farm's productivity with CocoaGuard. Our cutting-edge AI technology ensures fast and accurate disease detection, helping you maintain healthier crops and higher yields. Join CocoaGuard today and watch your farm thrive with the power of early detection and prevention.
+						</p>
+						
+						<a href="" class="btn-get-started">Read More</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Hero No Slider Sectio -->
+
+		<main id="main">
+			<section class="section-padding pb-0" id="timeline">
+				<div class="container">
+					<div class="row">
+			
+						<h2 class="text-center mb-lg-5 mb-4">Get Started</h2>
+						
+						<div class="timeline">
+							<!-- Upload Your Image -->
+							<div class="row g-0 justify-content-end justify-content-md-around align-items-start timeline-nodes">
+								<div class="col-9 col-md-5 me-md-4 me-lg-0 order-3 order-md-1 timeline-content bg-white shadow-lg">
+									<h3 class="text-dark">Upload Your Image</h3>
+			
+									<p>Simply upload a photo of your cocoa pod our technology will take care of the rest.</p>
+								</div>
+			
+								<div class="col-3 col-sm-1 order-2 timeline-icons text-md-center">
+									<i class="bi-upload timeline-icon"></i>
+								</div>
+			
+								<div class="col-9 col-md-5 ps-md-3 ps-lg-0 order-1 order-md-3 py-4 timeline-date">
+									<time>Step 1</time>
+								</div>
+							</div>
+			
+							<!-- Instant Analysis -->
+							<div class="row g-0 justify-content-end justify-content-md-around align-items-start timeline-nodes my-lg-5 my-4">
+								<div class="col-9 col-md-5 ms-md-4 ms-lg-0 order-3 order-md-1 timeline-content bg-white shadow-lg">
+									<h3 class="text-dark">Instant Analysis</h3>
+			
+									<p>Our advanced neural network analyzes the image for signs of Black Pod Disease.</p>
+								</div>
+			
+								<div class="col-3 col-sm-1 order-2 timeline-icons text-md-center">
+									<i class="bi-bar-chart-line timeline-icon"></i> <!-- Icon for analysis -->
+								</div>
+			
+								<div class="col-9 col-md-5 pe-md-3 pe-lg-0 order-1 order-md-3 py-4 timeline-date">
+									<time>Step 2</time>
+								</div>
+							</div>
+			
+							<!-- Get Results -->
+							<div class="row g-0 justify-content-end justify-content-md-around align-items-start timeline-nodes">
+								<div class="col-9 col-md-5 me-md-4 me-lg-0 order-3 order-md-1 timeline-content bg-white shadow-lg">
+									<h3 class="text-dark">Get Results</h3>
+			
+									<p>Within moments, receive a detailed report showing if your pod is healthy or infected.</p>
+								</div>
+			
+								<div class="col-3 col-sm-1 order-2 timeline-icons text-md-center">
+									<i class="bi-clipboard-check timeline-icon"></i> <!-- Icon for getting results -->
+								</div>
+			
+								<div class="col-9 col-md-5 ps-md-3 ps-lg-0 order-1 order-md-3 py-4 timeline-date">
+									<time>Step 3</time>
+								</div>
+							</div>
+			
+							<!-- Take Action -->
+							<div class="row g-0 justify-content-end justify-content-md-around align-items-start timeline-nodes my-lg-5 my-4">
+								<div class="col-9 col-md-5 ms-md-4 ms-lg-0 order-3 order-md-1 timeline-content bg-white shadow-lg">
+									<h3 class="text-dark">Take Action</h3>
+			
+									<p>If disease is detected, we provide expert guidance on the next steps to treat your crops.</p>
+								</div>
+			
+								<div class="col-3 col-sm-1 order-2 timeline-icons text-md-center">
+									<i class="bi-lightning timeline-icon"></i> <!-- Icon for action -->
+								</div>
+			
+								<div class="col-9 col-md-5 pe-md-3 pe-lg-0 order-1 order-md-3 py-4 timeline-date">
+									<time>Step 4</time>
+								</div>
+							</div>
+			
+							<!-- History -->
+							<div class="row g-0 justify-content-end justify-content-md-around align-items-start timeline-nodes">
+								<div class="col-9 col-md-5 me-md-4 me-lg-0 order-3 order-md-1 timeline-content bg-white shadow-lg">
+									<h3 class="text-dark">History</h3>
+			
+									<p>Keep track of the history of all your detected diseases for future reference and analysis.</p>
+								</div>
+			
+								<div class="col-3 col-sm-1 order-2 timeline-icons text-md-center">
+									<i class="bi-calendar-check timeline-icon"></i> <!-- Icon for history -->
+								</div>
+			
+								<div class="col-9 col-md-5 ps-md-3 ps-lg-0 order-1 order-md-3 py-4 timeline-date">
+									<time>Step 5</time>
+								</div>
+							</div>
+						</div>
+			
+					</div>
+				</div>
+			</section>
+			<!-- ======= Services Section ======= -->
+			<section class="services">
+				<div class="container">
+					<div class="row">
+						<div
+							class="col-md-6 col-lg-3 d-flex align-items-stretch"
+							data-aos="fade-up">
+							<div class="icon-box icon-box-pink">
+								<div class="icon"><i class="bx bx-search-alt"></i></div>
+								<h4 class="title"><a href="">Accurate Detection</a></h4>
+								<p class="description">
+									Detect cocoa diseases with precision using advanced AI technology.
+								</p>
+							</div>
+						</div>
+			
+						<div
+							class="col-md-6 col-lg-3 d-flex align-items-stretch"
+							data-aos="fade-up"
+							data-aos-delay="100">
+							<div class="icon-box icon-box-cyan">
+								<div class="icon"><i class="bx bx-leaf"></i></div>
+								<h4 class="title"><a href="">Improved Yield</a></h4>
+								<p class="description">
+									Boost your farm’s productivity by acting quickly to prevent crop loss.
+								</p>
+							</div>
+						</div>
+			
+						<div
+							class="col-md-6 col-lg-3 d-flex align-items-stretch"
+							data-aos="fade-up"
+							data-aos-delay="200">
+							<div class="icon-box icon-box-green">
+								<div class="icon"><i class="bx bx-analyse"></i></div>
+								<h4 class="title"><a href="">Real-time Insights</a></h4>
+								<p class="description">
+									Get instant analysis and recommendations to protect your crops.
+								</p>
+							</div>
+						</div>
+			
+						<div
+							class="col-md-6 col-lg-3 d-flex align-items-stretch"
+							data-aos="fade-up"
+							data-aos-delay="200">
+							<div class="icon-box icon-box-blue">
+								<div class="icon"><i class="bx bx-support"></i></div>
+								<h4 class="title"><a href="">Expert Support</a></h4>
+								<p class="description">
+									Our team is here to guide you on how to use the app and improve your farming practices.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- End Services Section -->
+			<section
+			class="why-us section-bg"
+			data-aos="fade-up"
+			data-aos-delay="200">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 video-box">
+						<img
+							src="{% static 'images/why_us.jpg' %}"
+							class="img-fluid"
+							alt="Why Choose Us" />
+					</div>
+		
+					<div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+						<div class="icon-box">
+							<div class="icon"><i class="bi bi-eye"></i></div>
+							<h4 class="title"><a href="">Instant Disease Detection</a></h4>
+							<p class="description">
+								Our cutting-edge AI technology provides accurate and instant results, ensuring your crops stay healthy.
+							</p>
+						</div>
+		
+						<div class="icon-box">
+							<div class="icon"><i class="bi bi-lightning"></i></div>
+							<h4 class="title"><a href="">Swift and Effective Solutions</a></h4>
+							<p class="description">
+								Identify diseases in seconds and get expert advice on the best ways to treat and prevent crop loss.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+			<!-- End Why Us Section -->
+
+			<!-- ======= Features Section ======= -->
+			<section class="features">
+				<div class="container">
+					<div class="section-title">
+						<h2>Key Features</h2>
+						<p>
+							Our web app offers advanced tools to help you monitor and protect your cocoa farm from diseases. With ease-of-use, accuracy, and expert recommendations, we ensure your crops thrive.
+						</p>
+					</div>
+			
+					<div class="row" data-aos="fade-up">
+						<div class="col-md-5">
+							<img
+								src="{% static 'images/accurate1.jpg' %}"
+								class="img-fluid"
+								alt="Disease Detection" />
+						</div>
+						<div class="col-md-7 pt-4">
+							<h3>Accurate Disease Detection</h3>
+							<p class="fst-italic">
+								Our AI-powered system identifies cocoa diseases with high precision, allowing you to act quickly and effectively.
+							</p>
+							<ul>
+								<li><i class="bi bi-check"></i> Instant disease analysis</li>
+								<li><i class="bi bi-check"></i> Real-time insights and reports</li>
+								<li><i class="bi bi-check"></i> Clear recommendations for treatment</li>
+							</ul>
+						</div>
+					</div>
+			
+					<div class="row" data-aos="fade-up">
+						<div class="col-md-5 order-1 order-md-2">
+							<img
+								src="{% static 'images/friendly.jpg' %}"
+								class="img-fluid"
+								alt="User-Friendly Interface" />
+						</div>
+						<div class="col-md-7 pt-5 order-2 order-md-1">
+							<h3>User-Friendly Interface</h3>
+							<p class="fst-italic">
+								Our platform is intuitive and designed for farmers of all levels, ensuring that anyone can use it with ease.
+							</p>
+							<p>
+								Easily navigate the app, upload images of affected plants, and receive results in just a few clicks.
+							</p>
+						</div>
+					</div>
+			
+					<div class="row" data-aos="fade-up">
+						<div class="col-md-5">
+							<img
+								src="{% static 'images/anywhere.jpg' %}"
+								class="img-fluid"
+								alt="Mobile Access" />
+						</div>
+						<div class="col-md-7 pt-5">
+							<h3>Access Anytime, Anywhere</h3>
+							<p>
+								Our mobile-responsive platform lets you monitor your farm and detect diseases on-the-go.
+							</p>
+							<ul>
+								<li><i class="bi bi-check"></i> Check results and recommendations instantly</li>
+								<li><i class="bi bi-check"></i> Manage your farm remotely</li>
+								<li><i class="bi bi-check"></i> Seamlessly switch between devices</li>
+							</ul>
+						</div>
+					</div>
+			
+					<div class="row" data-aos="fade-up">
+						<div class="col-md-5 order-1 order-md-2">
+							<img
+								src="{% static 'images/reliable.jpg' %}"
+								class="img-fluid"
+								alt="Security" />
+						</div>
+						<div class="col-md-7 pt-5 order-2 order-md-1">
+							<h3>Reliable and Secure</h3>
+							<p class="fst-italic">
+								We prioritize your data security. Our platform uses the latest encryption and privacy measures to protect your information.
+							</p>
+							<p>
+								You can trust our system to keep your farm data secure while delivering accurate disease detection and solutions.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- End Features Section -->
+		</main>
+		<!-- End #main -->
+
+		<!-- ======= Footer ======= -->
+
+		{% include 'cogurad/footer.html' %}
+		<!-- End Footer -->
+
+		<a
+			href="#"
+			class="back-to-top d-flex align-items-center justify-content-center"
+			><i class="bi bi-arrow-up-short"></i
+		></a>
+
+		<!-- Vendor JS Files -->
+		<script src="{% static 'js/purecounter_vanilla.js' %}"></script>
+		<script src="{% static 'js/aos.js' %}"></script>
+		<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+		<script src="{% static 'js/glightbox.min.js' %}"></script>
+		<script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+		<script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+		<script src="{% static 'js/core/noframework.waypoints.js' %}"></script>
+		<script src="{% static 'js/validate.js' %}"></script>
+
+		<!-- Template Main JS File -->
+		<script src="{% static 'js/main.js' %}"></script>
+	</body>
+</html>
