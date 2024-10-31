@@ -290,7 +290,7 @@ def predict(request):
                 return render(request, 'cogurad/result.html', {
                     'predicted_class': predicted_class.capitalize(),
                     'confidence_scores': confidence_scores,
-                    'file_url': disease_detection.image.url
+                    'file_url': uploaded_file.name
                 })
             else:
                 return render(request, 'cogurad/result.html', {'error': 'Prediction failed.'})
